@@ -598,23 +598,25 @@
                         <p> 
                             Drop your email id here to get early access to our beta release.
                         </p>
-
-                        <div class="step-form">
-                            <div class="box_email">
-                                <div class="box_email-1"></div>
-                                <input class="box_email-2" placeholder="email address">
-                                    <!-- <p>email address</p> -->
-                                </input>
+                        <form method="post">
+                            <div class="step-form">
+                            
+                                <div class="box_email">
+                                    <div class="box_email-1"></div>
+                                    <input type="email" class="box_email-2" placeholder="email address">
+                                        <!-- <p>email address</p> -->
+                                    </input>
+                                </div>
+                                <h4 id="response"></h4>
+                                <button type="submit" class="pushable">
+                                    <span class="shadow"></span>
+                                    <span class="edge"></span>
+                                    <span class="front">
+                                        Join Us
+                                    </span>
+                                </button>
                             </div>
-
-                            <button class="pushable">
-                                <span class="shadow"></span>
-                                <span class="edge"></span>
-                                <span class="front">
-                                    Join Us
-                                </span>
-                            </button>
-                        </div>
+                        </form>
                      </div>
                 </div>
 
@@ -712,5 +714,41 @@
             
 <!-- JavaScript Src -->
        <script src="./index.js"></script>
+       <script>
+        (() => {
+          const form = document.querySelector('form');
+          const submitResponse = document.querySelector('#response');
+          const formURL = 'https://fkwqxewy5e.execute-api.eu-west-2.amazonaws.com/Prod/submitForm';
+    
+          form.onsubmit = e => {
+            e.preventDefault();
+    
+            // Capture the form data
+            let data = {};
+            Array.from(form).map(input => (data[input.id] = input.value));
+            console.log('Sending: ', JSON.stringify(data));
+            submitResponse.innerHTML = 'Sending...'
+    
+            // Create the AJAX request
+            var xhr = new XMLHttpRequest();
+            xhr.open(form.method, formURL, true);
+            xhr.setRequestHeader('Accept', 'application/json; charset=utf-8');
+            xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    
+            // Send the collected data as JSON
+            xhr.send(JSON.stringify(data));
+    
+            xhr.onloadend = response => {
+              if (response.target.status === 200) {
+                form.reset();
+                submitResponse.innerHTML = 'Form submitted. Success!';
+              } else {
+                submitResponse.innerHTML = 'Error! Please try again.';
+                console.error(JSON.parse(response));
+              }
+            };    
+          };
+        })();
+      </script>
 </body>
 </html>
