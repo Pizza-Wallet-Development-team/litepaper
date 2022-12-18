@@ -15,11 +15,13 @@
     <script src="https://kit.fontawesome.com/7523a8ff85.js" crossorigin="anonymous"></script>
 
     <!-- FavIcons -->
-   
+    <link rel="icon" href="resources/FAVICON.svg" />
+    <!--
     <link rel="apple-touch-icon" sizes="180x180" href="./resources/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./resources/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./resources/favicon-16x16.png">
     <link rel="manifest" href="./resources/site.webmanifest">
+    -->
 
 </head>
 
@@ -598,25 +600,23 @@
                         <p> 
                             Drop your email id here to get early access to our beta release.
                         </p>
-                        <form method="post">
-                            <div class="step-form">
-                            
-                                <div class="box_email">
-                                    <div class="box_email-1"></div>
-                                    <input type="email" class="box_email-2" placeholder="email address">
-                                        <!-- <p>email address</p> -->
-                                    </input>
-                                </div>
-                                <h4 id="response"></h4>
-                                <button type="submit" class="pushable">
-                                    <span class="shadow"></span>
-                                    <span class="edge"></span>
-                                    <span class="front">
-                                        Join Us
-                                    </span>
-                                </button>
+
+                        <div class="step-form">
+                            <div class="box_email">
+                                <div class="box_email-1"></div>
+                                <input class="box_email-2" placeholder="email address">
+                                    <!-- <p>email address</p> -->
+                                </input>
                             </div>
-                        </form>
+
+                            <button class="pushable">
+                                <span class="shadow"></span>
+                                <span class="edge"></span>
+                                <span class="front">
+                                    Join Us
+                                </span>
+                            </button>
+                        </div>
                      </div>
                 </div>
 
@@ -714,41 +714,5 @@
             
 <!-- JavaScript Src -->
        <script src="./index.js"></script>
-       <script>
-        (() => {
-          const form = document.querySelector('form');
-          const submitResponse = document.querySelector('#response');
-          const formURL = 'https://fkwqxewy5e.execute-api.eu-west-2.amazonaws.com/Prod/submitForm';
-    
-          form.onsubmit = e => {
-            e.preventDefault();
-    
-            // Capture the form data
-            let data = {};
-            Array.from(form).map(input => (data[input.id] = input.value));
-            console.log('Sending: ', JSON.stringify(data));
-            submitResponse.innerHTML = 'Sending...'
-    
-            // Create the AJAX request
-            var xhr = new XMLHttpRequest();
-            xhr.open(form.method, formURL, true);
-            xhr.setRequestHeader('Accept', 'application/json; charset=utf-8');
-            xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-    
-            // Send the collected data as JSON
-            xhr.send(JSON.stringify(data));
-    
-            xhr.onloadend = response => {
-              if (response.target.status === 200) {
-                form.reset();
-                submitResponse.innerHTML = 'Form submitted. Success!';
-              } else {
-                submitResponse.innerHTML = 'Error! Please try again.';
-                console.error(JSON.parse(response));
-              }
-            };    
-          };
-        })();
-      </script>
 </body>
 </html>
