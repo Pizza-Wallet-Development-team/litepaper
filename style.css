@@ -904,7 +904,7 @@ h3 {
 }
 .step-line2{
     width: .2rem;
-    height: 18rem;
+    height: 22rem;
     border: .15rem solid #3E389F;
     background: var(--color-title);
     margin: 0 auto;
@@ -932,6 +932,11 @@ h3 {
     font-weight: 300;
     line-height: 3.4rem;
     margin-bottom: 2rem;
+}
+
+#my-form-status{
+    margin: 1.5rem 0 0;
+    font-size: 1.6rem;
 }
 
 .step-form{
@@ -1691,12 +1696,17 @@ h3 {
     .step-content p{
         font-size: 1.8rem;
     }
+    #my-form-status{
+        margin: 1rem 0;
+        font-size: 1.5rem;
+        line-height: 1.5;
+    }
 
     .step-line{
         height: 50rem;
     }
     .step-line2{
-        height: 22rem;
+        height: 28rem;
     }
 
     .step-form{
@@ -2082,7 +2092,14 @@ h3 {
         font-size: 2rem;
     }
     .step-line{
-        height: 47rem;
+        height: 50rem;
+    }
+    .step-line2{
+        height: 26rem;
+    }
+
+    #my-form-status{
+        margin: 1.5rem 0;font-size: 1.4rem;
     }
 
     .last_section-content{
